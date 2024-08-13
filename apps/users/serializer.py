@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+
+from apps.users.models import OTP
+
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,3 +34,10 @@ class UserSerializer(serializers.ModelSerializer):
         validated_data.pop('is_18_plus', None)
         user = User.objects.create_user(**validated_data)
         return user
+
+
+class OtpSerializer(serializers.ModelSerializer):
+    otp = serializers.CharField(read_only=True)
+    class Meta:
+        fields = "__all__"
+        model = OTP
