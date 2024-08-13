@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'apps.users',
     'rest_framework',
     'corsheaders',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -103,9 +104,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'EXCEPTION_HANDLER': 'apps.users.usermanager.custom_exception_handler',
 }
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
