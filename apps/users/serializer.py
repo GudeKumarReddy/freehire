@@ -41,3 +41,8 @@ class OtpSerializer(serializers.ModelSerializer):
     class Meta:
         fields = "__all__"
         model = OTP
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    otp = serializers.CharField()
